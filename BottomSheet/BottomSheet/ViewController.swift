@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         return notchView
     }()
     
+     let bottomLauncher = BottomSheetLauncher()
+    
     
     let button: UIButton = {
        let button = UIButton(type: UIButton.ButtonType.infoDark)
@@ -38,6 +40,8 @@ class ViewController: UIViewController {
         return cv
     }()
 
+
+    
     public fileprivate(set) var blackOverlay: UIControl = UIControl()
     
     override func viewDidLoad() {
@@ -65,7 +69,12 @@ class ViewController: UIViewController {
         self.blackOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.blackOverlay.frame = rootView.bounds
         self.blackOverlay.backgroundColor = UIColor(white: 0.0, alpha: 0.6)
+        
         rootView.addSubview(self.blackOverlay)
+       
+        //bottomLauncher.showBootmView(rootView: rootView)
+        
+        
         rootView.addSubview(self.collectionView)
         containerView.addSubview(notchView)
         rootView.addSubview(containerView)
@@ -73,13 +82,12 @@ class ViewController: UIViewController {
         let screenWidth = UIScreen.main.bounds
         self.notchView.frame = CGRect(x: screenWidth.size.width / 3 + 40, y: 9, width: 50, height: 6)
         self.containerView.frame = CGRect(x: 0, y: rootView.frame.height, width: rootView.frame.width, height: 24)
-        
+
         let referenceHeight:CGFloat = 200
         let y = rootView.frame.height - referenceHeight
         self.collectionView.frame = CGRect(x: 0, y: rootView.frame.height, width: rootView.frame.width, height: referenceHeight)
         
-        
-        
+
         //create a blur effect
         let overlayBlur = UIBlurEffect(style: UIBlurEffect.Style.light)
         let effectView = UIVisualEffectView(effect: overlayBlur)
@@ -96,7 +104,6 @@ class ViewController: UIViewController {
             
             self.collectionView.frame = CGRect(x: 0, y: y, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
             self.containerView.frame = CGRect(x: 0, y: y - 20, width: rootView.frame.width, height: 20)
-
         }
 
         //add a target to remove the overlay
@@ -105,7 +112,10 @@ class ViewController: UIViewController {
     
     @objc func removePopover() {
         self.blackOverlay.removeFromSuperview()
-        self.collectionView.removeFromSuperview()
+        bottomLauncher.dimsissBottomView()
+        //self.bottomSheetView.removeFromSuperview()
+        //self.notch.removeFromSuperview()
+        //self.collectionView.removeFromSuperview()
     }
 }
 

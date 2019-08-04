@@ -14,6 +14,9 @@
 		052BC09D22F64C6500B4985A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 052BC09B22F64C6500B4985A /* LaunchScreen.storyboard */; };
 		052BC0A822F64C6500B4985A /* BottomSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BC0A722F64C6500B4985A /* BottomSheetTests.swift */; };
 		052BC0B322F64C6500B4985A /* BottomSheetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BC0B222F64C6500B4985A /* BottomSheetUITests.swift */; };
+		1B90617122F6A533008FD7F8 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90617022F6A533008FD7F8 /* BottomSheetView.swift */; };
+		1B90617322F6A582008FD7F8 /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90617222F6A582008FD7F8 /* NotchView.swift */; };
+		1B90617522F6B59F008FD7F8 /* BottomSheetLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90617422F6B59F008FD7F8 /* BottomSheetLauncher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		052BC0AE22F64C6500B4985A /* BottomSheetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BottomSheetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		052BC0B222F64C6500B4985A /* BottomSheetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetUITests.swift; sourceTree = "<group>"; };
 		052BC0B422F64C6500B4985A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B90617022F6A533008FD7F8 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		1B90617222F6A582008FD7F8 /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
+		1B90617422F6B59F008FD7F8 /* BottomSheetLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetLauncher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,9 @@
 				052BC09922F64C6500B4985A /* Assets.xcassets */,
 				052BC09B22F64C6500B4985A /* LaunchScreen.storyboard */,
 				052BC09E22F64C6500B4985A /* Info.plist */,
+				1B90617022F6A533008FD7F8 /* BottomSheetView.swift */,
+				1B90617222F6A582008FD7F8 /* NotchView.swift */,
+				1B90617422F6B59F008FD7F8 /* BottomSheetLauncher.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -257,7 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				052BC09522F64C6300B4985A /* ViewController.swift in Sources */,
+				1B90617322F6A582008FD7F8 /* NotchView.swift in Sources */,
 				052BC09322F64C6300B4985A /* AppDelegate.swift in Sources */,
+				1B90617122F6A533008FD7F8 /* BottomSheetView.swift in Sources */,
+				1B90617522F6B59F008FD7F8 /* BottomSheetLauncher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

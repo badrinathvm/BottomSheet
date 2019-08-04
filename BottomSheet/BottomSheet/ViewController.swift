@@ -17,7 +17,6 @@ class ViewController: UIViewController {
         return button
     }()
 
-    var overlayBlur: UIBlurEffect?
     public fileprivate(set) var blackOverlay: UIControl = UIControl()
     
     override func viewDidLoad() {
@@ -36,44 +35,37 @@ class ViewController: UIViewController {
     }
     
     @objc func showTransparent(_ sender: UIButton) {
-        print("Show background layer")
-        
-        //prepareBackgroundView()
-        
+        //Get the rootView
         guard let rootView = UIApplication.shared.keyWindow else {
             return
         }
 
+        //configure black overlay adn add ot the rootview
         self.blackOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.blackOverlay.frame = UIScreen.main.bounds
-        self.blackOverlay.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        self.blackOverlay.frame = rootView.bounds
+        self.blackOverlay.backgroundColor = UIColor(white: 0.0, alpha: 0.6)
         rootView.addSubview(self.blackOverlay)
-
-        self.overlayBlur = UIBlurEffect(style: UIBlurEffect.Style.light)
+        
+        //create a blur effect
+        let overlayBlur = UIBlurEffect(style: UIBlurEffect.Style.light)
         let effectView = UIVisualEffectView(effect: overlayBlur)
         effectView.frame = self.blackOverlay.bounds
         effectView.isUserInteractionEnabled = false
-        self.blackOverlay.addSubview(effectView)
-        //self.blackOverlay.alpha = 0
         
+        //add the blur effectuve view to blackoverlay
+        self.blackOverlay.addSubview(effectView)
+        self.blackOverlay.alpha = 0
+        
+        //animate from alpha 0 to 1 to show the effect
+        UIView.animate(withDuration: 0.5) {
+            self.blackOverlay.alpha = 1
+        }
+
+        //add a target to remove the overlay
         self.blackOverlay.addTarget(self, action: #selector(removePopover), for: .touchUpInside)
     }
     
-    func prepareBackgroundView(){
-        let blurEffect = UIBlurEffect.init(style: .light)
-        let visualEffect = UIVisualEffectView.init(effect: blurEffect)
-        let bluredView = UIVisualEffectView.init(effect: blurEffect)
-        bluredView.contentView.addSubview(visualEffect)
-        bluredView.backgroundColor = UIColor.yellow
-        
-        visualEffect.frame = UIScreen.main.bounds
-        bluredView.frame = UIScreen.main.bounds
-        
-        view.insertSubview(bluredView, at: 0)
-    }
-    
     @objc func removePopover() {
-        print("Remove popover")
         self.blackOverlay.removeFromSuperview()
     }
 }

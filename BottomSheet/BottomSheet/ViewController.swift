@@ -39,8 +39,6 @@ class ViewController: UIViewController {
         cv.backgroundColor = UIColor.yellow
         return cv
     }()
-
-
     
     public fileprivate(set) var blackOverlay: UIControl = UIControl()
     
@@ -70,52 +68,48 @@ class ViewController: UIViewController {
         self.blackOverlay.frame = rootView.bounds
         self.blackOverlay.backgroundColor = UIColor(white: 0.0, alpha: 0.6)
         
-        rootView.addSubview(self.blackOverlay)
-       
-        //bottomLauncher.showBootmView(rootView: rootView)
+        bottomLauncher.showBootmView(rootView: rootView)
         
-        
-        rootView.addSubview(self.collectionView)
-        containerView.addSubview(notchView)
-        rootView.addSubview(containerView)
-        
-        let screenWidth = UIScreen.main.bounds
-        self.notchView.frame = CGRect(x: screenWidth.size.width / 3 + 40, y: 9, width: 50, height: 6)
-        self.containerView.frame = CGRect(x: 0, y: rootView.frame.height, width: rootView.frame.width, height: 24)
-
-        let referenceHeight:CGFloat = 200
-        let y = rootView.frame.height - referenceHeight
-        self.collectionView.frame = CGRect(x: 0, y: rootView.frame.height, width: rootView.frame.width, height: referenceHeight)
-        
-
-        //create a blur effect
-        let overlayBlur = UIBlurEffect(style: UIBlurEffect.Style.light)
-        let effectView = UIVisualEffectView(effect: overlayBlur)
-        effectView.frame = self.blackOverlay.bounds
-        effectView.isUserInteractionEnabled = false
-        
-        //add the blur effectuve view to blackoverlay
-        //self.blackOverlay.addSubview(effectView)
-        self.blackOverlay.alpha = 0
-        
-        //animate from alpha 0 to 1 to show the effect
-        UIView.animate(withDuration: 0.5) {
-            self.blackOverlay.alpha = 1
-            
-            self.collectionView.frame = CGRect(x: 0, y: y, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
-            self.containerView.frame = CGRect(x: 0, y: y - 20, width: rootView.frame.width, height: 20)
-        }
-
-        //add a target to remove the overlay
-        self.blackOverlay.addTarget(self, action: #selector(removePopover), for: .touchUpInside)
+//        rootView.addSubview(self.blackOverlay)
+//        rootView.addSubview(self.collectionView)
+//        containerView.addSubview(notchView)
+//        rootView.addSubview(containerView)
+//
+//        let screenWidth = UIScreen.main.bounds
+//        self.notchView.frame = CGRect(x: screenWidth.size.width / 3 + 40, y: 9, width: 50, height: 6)
+//        self.containerView.frame = CGRect(x: 0, y: rootView.frame.height, width: rootView.frame.width, height: 24)
+//
+//        let referenceHeight:CGFloat = 200
+//        let y = rootView.frame.height - referenceHeight
+//        self.collectionView.frame = CGRect(x: 0, y: rootView.frame.height, width: rootView.frame.width, height: referenceHeight)
+//
+//        //create a blur effect
+//        let overlayBlur = UIBlurEffect(style: UIBlurEffect.Style.light)
+//        let effectView = UIVisualEffectView(effect: overlayBlur)
+//        effectView.frame = self.blackOverlay.bounds
+//        effectView.isUserInteractionEnabled = false
+//
+//        //add the blur effectuve view to blackoverlay
+//        //self.blackOverlay.addSubview(effectView)
+//        self.blackOverlay.alpha = 0
+//
+//        //animate from alpha 0 to 1 to show the effect
+//        UIView.animate(withDuration: 0.5) {
+//            self.blackOverlay.alpha = 1
+//
+//            self.collectionView.frame = CGRect(x: 0, y: y, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+//            self.containerView.frame = CGRect(x: 0, y: y - 20, width: rootView.frame.width, height: 20)
+//        }
+//
+//        //add a target to remove the overlay
+//        self.blackOverlay.addTarget(self, action: #selector(removePopover), for: .touchUpInside)
     }
     
     @objc func removePopover() {
         self.blackOverlay.removeFromSuperview()
-        bottomLauncher.dimsissBottomView()
-        //self.bottomSheetView.removeFromSuperview()
+        //bottomLauncher.dimsissBottomView()
         //self.notch.removeFromSuperview()
-        //self.collectionView.removeFromSuperview()
+        self.collectionView.removeFromSuperview()
     }
 }
 

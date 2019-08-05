@@ -18,6 +18,7 @@
 		1B90617322F6A582008FD7F8 /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90617222F6A582008FD7F8 /* NotchView.swift */; };
 		1B90617522F6B59F008FD7F8 /* BottomSheetLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90617422F6B59F008FD7F8 /* BottomSheetLauncher.swift */; };
 		1B90617722F792CF008FD7F8 /* BottomSheetUsingFrames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90617622F792CF008FD7F8 /* BottomSheetUsingFrames.swift */; };
+		1B90617922F7AA2B008FD7F8 /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90617822F7AA2B008FD7F8 /* SheetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		1B90617222F6A582008FD7F8 /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
 		1B90617422F6B59F008FD7F8 /* BottomSheetLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetLauncher.swift; sourceTree = "<group>"; };
 		1B90617622F792CF008FD7F8 /* BottomSheetUsingFrames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetUsingFrames.swift; sourceTree = "<group>"; };
+		1B90617822F7AA2B008FD7F8 /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				1B90617222F6A582008FD7F8 /* NotchView.swift */,
 				1B90617422F6B59F008FD7F8 /* BottomSheetLauncher.swift */,
 				1B90617622F792CF008FD7F8 /* BottomSheetUsingFrames.swift */,
+				1B90617822F7AA2B008FD7F8 /* SheetViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				1B90617322F6A582008FD7F8 /* NotchView.swift in Sources */,
 				052BC09322F64C6300B4985A /* AppDelegate.swift in Sources */,
 				1B90617122F6A533008FD7F8 /* BottomSheetView.swift in Sources */,
+				1B90617922F7AA2B008FD7F8 /* SheetViewController.swift in Sources */,
 				1B90617522F6B59F008FD7F8 /* BottomSheetLauncher.swift in Sources */,
 				1B90617722F792CF008FD7F8 /* BottomSheetUsingFrames.swift in Sources */,
 			);

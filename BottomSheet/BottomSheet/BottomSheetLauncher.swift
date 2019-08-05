@@ -59,6 +59,7 @@ class BottomSheetLauncher: UIView {
         }
         
         notchComponent.addSubview(notchView)
+        notchComponent.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
         
         let screenSize = UIScreen.main.bounds
         let referenceHeight:CGFloat = 400
@@ -88,23 +89,17 @@ class BottomSheetLauncher: UIView {
         self.bottomViewTopConstraint.constant = screenSize.height - referenceHeight
         self.notchTopConstraint.constant = screenSize.height - referenceHeight - 24
         
-        //animate from alpha 0 to 1 to show the effect
         UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.blackOverlay.alpha = 1
             self.layoutIfNeeded()
         }, completion: nil)
         
-        //add a target to remove the overlay
         self.blackOverlay.addTarget(self, action: #selector(dimsissBottomView), for: .touchUpInside)
     }
     
     @objc func dimsissBottomView() {
-        self.blackOverlay.removeFromSuperview()
-        self.collectionView.removeFromSuperview()
-        self.notchComponent.removeFromSuperview()
-        
-        /*[ blackOverlay , notchView , collectionView ].forEach { view in
+        [ blackOverlay , notchComponent , collectionView ].forEach { view in
             view.removeFromSuperview()
-        }*/
+        }
     }
 }

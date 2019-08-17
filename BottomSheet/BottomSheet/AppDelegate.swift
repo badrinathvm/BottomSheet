@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window else { return true }
         
         let vc = ViewController()
-        let navigationController = UINavigationController(rootViewController: vc)
-        window.rootViewController = navigationController
+        //let navigationController = UINavigationController(rootViewController: vc)
+        window.rootViewController = vc
         window.makeKeyAndVisible()
     
         return true

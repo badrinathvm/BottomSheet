@@ -11,18 +11,25 @@ import UIKit
 
 class SheetViewController: UIViewController {
     
-    public let containerView = UIView()
-    
-    /// The view that can be pulled to resize a sheeet.
-    public let pullBarView = UIView()
-    
-    let bottomLauncher: BottomSheetLauncher = {
-       let bottomLauncher = BottomSheetLauncher()
-        return bottomLauncher
+    let containerVC:ContainerViewController = {
+        let vc = ContainerViewController()
+        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        return vc
     }()
     
-    let containerVC = ContainerViewController()
-    let notchVC = NotchViewController()
+    let notchVC:NotchViewController = {
+        let vc = NotchViewController()
+        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        return vc
+    }()
+    
+    let blurredEffectView:UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.translatesAutoresizingMaskIntoConstraints = false
+        return blurredEffectView
+    }()
+    
     var heightConstraint:NSLayoutConstraint!
     var notchBottomConstraint:NSLayoutConstraint!
     
@@ -30,47 +37,53 @@ class SheetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.lightGray
-    
-        //setup containerView ( this view contains the place holder for the notch )
-        
-        //setup pullbar view ( small notch and setting contraints to it )
-        
-        //setup childViewController ( this view is the bottom sheet )
         
         //Also add Blur effect View
-        
-        //bottomLauncher.showBootmView(rootView: rootView)
+        setupBlurView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //setup containerView ( this view contains the place holder for the notch )
          setupContainerView()
     }
     
-    func setupContainerView() {
-        containerVC.view.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(containerVC.view)
+    func setupBlurView() {
+        view.addSubview(blurredEffectView)
         
-        notchVC.view.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(notchVC.view)
+        NSLayoutConstraint.activate([
+            blurredEffectView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            blurredEffectView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            blurredEffectView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            blurredEffectView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+    }
+    
+    func setupContainerView() {
+        
+        //setup pullbar view ( small notch and setting contraints to it )
+        [containerVC,notchVC].forEach { (viewController) in
+            self.view.addSubview(viewController.view)
+        }
         
         heightConstraint =  containerVC.view.heightAnchor.constraint(equalToConstant: 0)
         notchBottomConstraint = notchVC.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        
         NSLayoutConstraint.activate([
             containerVC.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             containerVC.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             containerVC.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             heightConstraint,
             
-            //notchHeightConstraint,
             notchVC.view.heightAnchor.constraint(equalToConstant: 20),
             notchVC.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             notchVC.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             notchBottomConstraint
         ])
         
-        self.add(containerVC)
-        self.add(notchVC)
+        //setup childViewController ( this view is the bottom sheet )
+        [containerVC, notchVC].forEach { (viewController) in
+            self.add(viewController)
+        }
         
         let screenSize = UIScreen.main.bounds
         let heightValue = screenSize.size.height / 2

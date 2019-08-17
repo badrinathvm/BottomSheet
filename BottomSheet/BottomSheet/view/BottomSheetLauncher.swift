@@ -59,7 +59,7 @@ class BottomSheetLauncher: UIView {
         }
         
         notchComponent.addSubview(notchView)
-        notchComponent.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
+         //collectionView.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
         
         let screenSize = UIScreen.main.bounds
         let referenceHeight:CGFloat = 400
@@ -74,8 +74,8 @@ class BottomSheetLauncher: UIView {
             self.collectionView.heightAnchor.constraint(equalToConstant: referenceHeight),
             //self.bottomSheetView.bottomAnchor.constraint(equalTo: rootView.safeAreaLayoutGuide.bottomAnchor),
             
-            //self.notchComponent.topAnchor.constraint(equalTo: rootView.topAnchor, constant: screenSize.height - referenceHeight - 24),
-            notchTopConstraint!,
+            self.notchComponent.topAnchor.constraint(equalTo: rootView.topAnchor, constant: screenSize.height - referenceHeight - 24),
+            //notchTopConstraint!,
             self.notchComponent.leadingAnchor.constraint(equalTo: rootView.leadingAnchor),
             self.notchComponent.trailingAnchor.constraint(equalTo: rootView.trailingAnchor),
             self.notchComponent.heightAnchor.constraint(equalToConstant: 24),
@@ -86,11 +86,11 @@ class BottomSheetLauncher: UIView {
             self.notchView.widthAnchor.constraint(equalToConstant: 50)
         ])
         
-        self.bottomViewTopConstraint.constant = screenSize.height - referenceHeight
-        self.notchTopConstraint.constant = screenSize.height - referenceHeight - 24
-        
+        self.layoutIfNeeded()
         UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.blackOverlay.alpha = 1
+            self.bottomViewTopConstraint.constant = screenSize.height - referenceHeight
+            self.notchTopConstraint.constant = screenSize.height - referenceHeight - 24
             self.layoutIfNeeded()
         }, completion: nil)
         

@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     let bottomLauncher = BottomSheetLauncher()
     let bottomLauncherUsingFrames = BottomSheetUsingFrames()
+     let sheetVc = SheetViewController()
     
     let button: UIButton = {
        let button = UIButton(type: UIButton.ButtonType.infoDark)
@@ -19,6 +20,10 @@ class ViewController: UIViewController {
        button.addTarget(self, action: #selector(showTransparent(_:)), for: UIControl.Event.touchUpInside)
         return button
     }()
+        
+    var heightConstraint:NSLayoutConstraint!
+    
+    public fileprivate(set) var blackOverlay: UIControl = UIControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +41,33 @@ class ViewController: UIViewController {
     
     @objc func showTransparent(_ sender: UIButton) {
         //Get the rootView
-        guard let rootView = UIApplication.shared.keyWindow else {
-            return
-        }
+//        guard let rootView = UIApplication.shared.keyWindow else {
+//            return
+//        }
         
-        bottomLauncher.showBootmView(rootView: rootView)
+//        self.blackOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        self.blackOverlay.frame = rootView.bounds
+//        self.blackOverlay.backgroundColor = UIColor.lightGray
+//        self.blackOverlay.alpha = 1
+//
+//        rootView.addSubview(self.blackOverlay)
+
+//        bottomLauncher.showBootmView(rootView: rootView)
         
         //bottomLauncherUsingFrames.showBottomSheet(rootView: rootView)
+       
+        
+        sheetVc.view.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(sheetVc.view)
+        
+        NSLayoutConstraint.activate([
+            sheetVc.view.topAnchor.constraint(equalTo: self.view.topAnchor),
+            sheetVc.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            sheetVc.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            sheetVc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+        ])
     }
 }
+
+
 

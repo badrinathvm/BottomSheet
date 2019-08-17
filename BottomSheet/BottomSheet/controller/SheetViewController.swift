@@ -72,10 +72,12 @@ class SheetViewController: UIViewController {
         self.add(containerVC)
         self.add(notchVC)
         
+        let screenSize = UIScreen.main.bounds
+        let heightValue = screenSize.size.height / 2
         self.view.layoutIfNeeded()
         UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            self.notchBottomConstraint.constant = -410
-            self.heightConstraint.constant = 410
+            self.notchBottomConstraint.constant = -heightValue
+            self.heightConstraint.constant =  heightValue
             self.view.layoutIfNeeded()
         }, completion: nil)
     }

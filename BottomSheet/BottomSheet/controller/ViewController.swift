@@ -40,23 +40,6 @@ class ViewController: UIViewController {
     }
     
     @objc func showTransparent(_ sender: UIButton) {
-        //Get the rootView
-//        guard let rootView = UIApplication.shared.keyWindow else {
-//            return
-//        }
-        
-//        self.blackOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        self.blackOverlay.frame = rootView.bounds
-//        self.blackOverlay.backgroundColor = UIColor.lightGray
-//        self.blackOverlay.alpha = 1
-//
-//        rootView.addSubview(self.blackOverlay)
-
-//        bottomLauncher.showBootmView(rootView: rootView)
-        
-        //bottomLauncherUsingFrames.showBottomSheet(rootView: rootView)
-       
-        
         sheetVc.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(sheetVc.view)
         
@@ -67,7 +50,33 @@ class ViewController: UIViewController {
             sheetVc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ])
     }
+    
+    // Below code is if we wanna make use of BottomSheetLauncher or BottomLauncher Using frames.
+    
+    func usingBootmSheetLauncherORFrames() {
+        //Get the rootView
+        guard let rootView = UIApplication.shared.keyWindow else {
+            return
+        }
+        
+        self.blackOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.blackOverlay.frame = rootView.bounds
+        self.blackOverlay.backgroundColor = UIColor.lightGray
+        self.blackOverlay.alpha = 1
+        
+        rootView.addSubview(self.blackOverlay)
+        bottomLauncher.showBootmView(rootView: rootView)
+        
+        //bottomLauncherUsingFrames.showBottomSheet(rootView: rootView)
+    }
+
 }
+
+
+
+
+
+
 
 
 
